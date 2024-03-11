@@ -1,5 +1,5 @@
 # Staking Calculator
-
+![Screenshot](https://raw.githubusercontent.com/birdsofspace/staking-calculator/main/screenshot-1.png)
 ## Description
 Staking Calculator is an application that allows users to calculate the estimated returns from staking their crypto assets.
 
