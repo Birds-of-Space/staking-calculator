@@ -23,9 +23,6 @@ Staking Calculator is an application that allows users to calculate the estimate
 ## Source File
 The main source file for this application is `src/index.pug`.
 
-## Author
-Add information about the author here.
-
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
