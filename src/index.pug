@@ -1,0 +1,160 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css' rel='stylesheet')
+header.py-4.mx-auto
+  nav.border-gray-200.px-2.mb-10
+    .container.mx-auto.flex.flex-wrap.items-center.justify-between
+      a.flex(href='#')
+        img(src='https://raw.githubusercontent.com/birdsofspace/browser-wallet-dev/main/images/icon-128.png' height='30' style='height:30px !important;width: auto;')
+        span.self-center.text-lg.font-semibold.whitespace-nowrap(style='font-weight: bold !important;') Staking Calculator
+      .flex(class='md:order-2')
+        .relative.mr-3.hidden(class='md:mr-0 md:block')
+          a.relative.inline-flex.items-center.justify-center.mb-2.me-2.overflow-hidden.text-sm.font-medium.text-gray-900.rounded-lg.group.bg-gradient-to-br.from-purple-600.to-blue-500(class='p-0.5 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800')
+            span.relative.px-5.transition-all.ease-in.duration-75.bg-white.rounded-md(class='py-2.5 dark:bg-gray-900 group-hover:bg-opacity-0')
+              | Go to NEST
+        button.text-gray-400.rounded-lg.inline-flex.items-center.justify-center(data-collapse-toggle='mobile-menu-3' type='button' class='md:hidden hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300' aria-controls='mobile-menu-3' aria-expanded='false')
+          span.sr-only Open main menu
+          svg.w-6.h-6(fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+            path(fill-rule='evenodd' d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clip-rule='evenodd')
+          svg.hidden.w-6.h-6(fill='currentColor' viewbox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+            path(fill-rule='evenodd' d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z' clip-rule='evenodd')
+      #mobile-menu-3.hidden.justify-between.items-center.w-full(class='md:flex md:w-auto md:order-1')
+        ul.flex-col.flex.mt-4(class='md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium')
+          li
+            a.bg-blue-700.text-white.block.pl-3.pr-4.py-2.rounded(href='#home' class='md:bg-transparent md:text-blue-700 md:p-0' aria-current='page') Home
+          li
+            a.text-gray-700.border-b.border-gray-100.block.pl-3.pr-4.py-2(href='#calculator' class='hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0') Calculator
+          li
+            a.text-gray-700.border-b.border-gray-100.block.pl-3.pr-4.py-2(href='#how-to-works' class='hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0')
+              | How
+              | to works
+main.container.mx-auto.px-4.py-4
+  .grid.grid-cols-1.gap-4(class='md:grid-cols-2')
+    .bg-white.rounded-lg.shadow-md.p-4
+      #calculator.container.mx-auto.p-4
+        h2.text-lg.font-bold.mb-2 APY Staking Calculator
+        .flex.flex-col.gap-4
+          label.block.text-gray-700.font-bold.mb-2(for='principal') Principal:
+          input#principal.w-full.p-2.border.rounded-md.shadow-sm(type='number' placeholder='Enter principal amount')
+          label.block.text-gray-700.font-bold.mb-2(for='apy') APY (%):
+          input#apy.w-full.p-2.border.rounded-md.shadow-sm(type='number' placeholder='Enter APY')
+          label.block.text-gray-700.font-bold.mb-2(for='start-date') Start Date:
+          input#start-date.w-full.p-2.border.rounded-md.shadow-sm(type='date')
+          label.block.text-gray-700.font-bold.mb-2(for='end-date') End Date:
+          input#end-date.w-full.p-2.border.rounded-md.shadow-sm(type='date')
+          button.text-white.bg-gradient-to-r.from-blue-500.via-blue-600.to-blue-700.shadow-lg.font-medium.rounded-lg.text-sm.px-5.text-center.me-2.mb-2(class='hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 py-2.5' onclick='calculateEarnings()') Calculate Earnings
+        #results.mt-4
+    #how-to-works.bg-white.rounded-lg.shadow-md.p-4
+      h2.text-lg.font-bold.mb-2 Staking Profit Calculator Explained
+      .prose
+        p
+          | The provided code defines a function named &grave;calculateStakingEarnings&grave; that helps estimate
+          | potential profits earned by staking cryptocurrency for a specific period. Let&apos;s break down how
+          | it works:
+        h2.mt-4 Function Parameters
+        ul.list-disc.pl-4
+          li
+            b &grave;principal&grave;
+            |  (e.g., 1000): The amount of cryptocurrency staked.
+          li
+            b &grave;apy&grave;
+            |  (e.g., 10%): The Annual Percentage Yield (APY) offered for staking.
+          li
+            b &grave;startTimeStamp&grave;
+            |  (e.g., timestamp for March 10, 2024): A timestamp representing the
+            |                             staking start time.
+          li
+            b &grave;stopTimeStamp&grave;
+            |  (e.g., timestamp for April 10, 2024): A timestamp representing the
+            |                             staking end time.
+        h2.mt-4 Calculation Steps
+        ol.list-decimal.pl-4
+          li
+            b Time Difference:
+            ul.list-disc.pl-4
+              li
+                | The function calculates the difference between &grave;stopTimeStamp&grave; and &grave;startTimeStamp&grave;
+                | in seconds (&grave;timeDiffInSeconds&grave;).
+              li
+                | It then converts the difference to days (&grave;timeDiffInDays&grave;) by dividing by the number
+                | of seconds in a day.
+          li
+            b Daily Interest Rate:
+            p
+              | The daily interest rate is calculated using a formula that considers the APY and converts
+              | it into a daily rate.
+          li
+            b Interest Earned:
+            p
+              | The interest earned is calculated by multiplying the &grave;principal&grave; amount by the
+              | &grave;dailyRate&grave; and the &grave;timeDiffInDays&grave;.
+          li
+            b Total Earnings:
+            p
+              | The total earnings are simply the sum of the &grave;principal&grave; amount and the &grave;interestEarned&grave;.
+        h2.mt-4 Important Note
+        p
+          | This is a simplified example. Actual staking platforms might have additional factors affecting
+          | earnings. Always consult the platform&apos;s documentation for details.
+footer#footer.text-center.py-4
+  | Copyright &copy; 
+  span#currentYear
+  |  Birds of Space
+script.
+  var currentYear = new Date().getFullYear();
+  document.getElementById('currentYear').innerHTML = currentYear;
+script.
+  const principalInput = document.getElementById("principal");
+  const apyInput = document.getElementById("apy");
+  const startDateInput = document.getElementById("start-date");
+  const endDateInput = document.getElementById("end-date");
+  const resultsDiv = document.getElementById("results");
+  function calculateEarnings() {
+  const principal = parseFloat(principalInput.value);
+  const apy = parseFloat(apyInput.value);
+  const startDate = new Date(startDateInput.value).getTime() / 1000; // Convert to Unix timestamp
+  const endDate = new Date(endDateInput.value).getTime() / 1000;
+  const results = calculateStakingEarnings(principal, apy, startDate, endDate);
+  // Clear any previous results
+  resultsDiv.innerHTML = "";
+  // Display results in a user-friendly format
+  resultsDiv.innerHTML += `
+  <h4 class="text-lg font-semibold mb-2">Results:</h4>
+  <ul class="list-disc pl-6">
+  <li>Staked amount: ${results.principal}</li>
+  <li>APY: ${results.apy}%</li>
+  <li>Start date: ${new Date(results.startTimeStamp * 1000)}</li>
+  <li>End date: ${new Date(results.stopTimeStamp * 1000)}</li>
+  <li>Time difference in days: ${results.timeDiffInDays}</li>
+  <li>Interest earned: ${results.interestEarned.toFixed(18)}</li>
+  <li>Total earnings: ${results.totalEarnings.toFixed(18)}</li>
+  </ul>
+  `;
+  }
+  function calculateStakingEarnings(principal, apy, startTimeStamp, stopTimeStamp) {
+  const timeDiffInSeconds = stopTimeStamp - startTimeStamp;
+  const timeDiffInDays = timeDiffInSeconds / (60 * 60 * 24);
+  const dailyRate = Math.pow(1 + (apy / 100), 1 / 365) - 1;
+  const interestEarned = principal * dailyRate * timeDiffInDays;
+  const totalEarnings = principal + interestEarned;
+  return {
+  principal: principal,
+  apy: apy,
+  startTimeStamp: startTimeStamp,
+  stopTimeStamp: stopTimeStamp,
+  timeDiffInSeconds: timeDiffInSeconds,
+  timeDiffInDays: timeDiffInDays,
+  interestEarned: interestEarned,
+  totalEarnings: totalEarnings,
+  };
+  }
+script(src='https://unpkg.com/@themesberg/flowbite@1.1.1/dist/flowbite.bundle.js')
+script(src='https://unpkg.com/alpinejs')
+script.
+  const navigation = document.querySelector('.md:flex');
+  const button = document.querySelector('button');
+  button.addEventListener('click', () => {
+  navigation.classList.toggle('hidden');
+  });
